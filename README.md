@@ -29,4 +29,16 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 pp/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 ### Setup
-Insert your FCM server key and your firebase config into cfg.json, This should be all you need to get this up and running
+Create a file called "cfg.json" in src/
+
+In this file you need to fill out your firebase configs, The file is structured like this
+
+```
+{
+    "ServerKey": "REPLACE WITH SERVER KEY",
+    "PublicKey": "REPLACE WITH FCM PUBLIC KEY",
+    "FireBaseConfig":{
+        "FIREBASE SERVER CONFIG HERE!": "NULL"
+    }
+}
+```
