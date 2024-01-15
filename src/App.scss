@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap');
+
+.messageBox.drawer{
+    width: 50vw;
+    margin-left: 45vw;
+
+}
+
+#msgsBox::webkit-scrollbar{
+    width: 0px; /* Chrome Opera Safari */
+}
+
+.msgsContainer::-webkit-scrollbar{
+    display: none;
+}
+
+#msgsBox::-webkit-scrollbar-track{
+    width: 0px; /* Chrome Opera Safari */
+}
+
+
+#msgsBox{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
