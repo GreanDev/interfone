@@ -11,7 +11,7 @@ In the project directory, you can run:
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 App will also open with HTTPS to support Firebase FCM 
-[Unsecure **SELF SIGNED** Key **DON'T** use this for production
+[Unsecure **SELF SIGNED** Key **DON'T** use this for production]
 
 The page will reload when you make changes.\
 You may also see any lint errors in the console.
@@ -29,4 +29,4 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 pp/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 ### Setup
-
+Insert your FCM server key and your firebase config into cfg.json, This should be all you need to get this up and running
