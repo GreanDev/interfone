@@ -59,10 +59,10 @@ onMessage(messaging, (payload) => {
   });
   
   console.log("Adding to texts");
-  var msgText = <Typography variant="h6" sx={{bgcolor: 'primary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0', color: 'black' }}>
+  var msgText = <Typography variant="h6" sx={{bgcolor: 'primary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0',marginTop:'5px', color: 'black' }}>
   {payload.data.body}
 </Typography>
-  var otherPad = <Typography variant="h6" sx={{opacity: '0', bgcolor: 'primary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0', color: 'black' }}>
+  var otherPad = <Typography variant="h6" sx={{opacity: '0', bgcolor: 'primary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0', marginTop: '5px',color: 'black' }}>
   {payload.data.body}
 </Typography>
   messages.push(msgText); 
@@ -142,10 +142,10 @@ async function sendMessage(message){
 
   })
   console.log("Adding to texts");
-  var msgText = <Typography variant="h6" sx={{bgcolor: 'secondary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0', color: 'black' }}>
+  var msgText = <Typography variant="h6" sx={{bgcolor: 'secondary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0',marginTop: '5px', color: 'black' }}>
   {message}
 </Typography>
-  var otherPad = <Typography variant="h6" sx={{opacity: '0', bgcolor: 'secondary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0', color: 'black' }}>
+  var otherPad = <Typography variant="h6" sx={{opacity: '0', bgcolor: 'secondary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0', marginTop: '5px',color: 'black' }}>
   {message}
 </Typography>
   selfMessages.push(msgText); 
