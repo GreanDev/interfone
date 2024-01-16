@@ -4,6 +4,8 @@ import Axios from "axios";
 import { getFirestore, collection, addDoc, deleteDoc, doc, getDocs, setDoc  } from "firebase/firestore";
 import { Box, Typography } from "@mui/material";
 import { useEffect, useReducer, useState } from "react";
+import cfg from './cfg.json'
+
 
 var users = [];
 const messages = [
@@ -12,21 +14,7 @@ let regDoc = "";
 let currentKey = "";
 //FCM
 //https://firebase.google.com/docs/web/setup#config-object
-const firebaseApp = initializeApp({
-  apiKey: "AIzaSyD0En-gHoNBS0-slWk9dJaht3qS0ZLfbpw",
-
-  authDomain: "interfone-gba.firebaseapp.com",
-
-  projectId: "interfone-gba",
-
-  storageBucket: "interfone-gba.appspot.com",
-
-  messagingSenderId: "738904683689",
-
-  appId: "1:738904683689:web:e1c93c75ba42a23e4ea5b8"
-
-
-});
+const firebaseApp = initializeApp(cfg.FireBaseConfig);
 
 
 // Retrieve an instance of Firebase Messaging so that it can handle background
@@ -34,7 +22,7 @@ const firebaseApp = initializeApp({
 const messaging = getMessaging(firebaseApp);
 
 
-getToken(messaging, { vapidKey: 'BM14V1QaG5wCT9bAZXmM8JHiYdUmA2C8Cu8CZxECQe1JYMvFOYsRfv066IaAfqI7CvEjWfZw2R0No-lG1VbJvIs' }).then((currentToken) => {
+getToken(messaging, { vapidKey: cfg.PublicKey }).then((currentToken) => {
   if (currentToken) {
     // Send the token to your server and update the UI if necessary
     addKey(currentToken);
@@ -110,7 +98,7 @@ async function sendMessage(message){
     if (usr == currentKey) {return;}
     console.log("Sending to: "+usr);
   const config = {
-    headers: { Authorization: `key=AAAArAomtKk:APA91bGY04nT8NQmzC3tqcaU0-0ZaMBRRWrVY2ROooEOSMseWTka_F3Z43a9JTjzybV6gwUa0WT5EOJ5oOsss6wWxJQVvVQxYJAOJ9R0OfDxDze4j52e2n_90v5RHT5dRyu0dlgIG2is` }
+    headers: { Authorization: `key=${cfg.ServerKey}` }
   };
   const body = {
        "to":usr,
