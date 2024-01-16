@@ -94,13 +94,15 @@ function App() {
     flexDirection: 'column',
     overflow: 'scroll',
     overflowX: 'hidden',
-    scrollBehavior: 'smooth',
     alignItems: 'flex-start',
 
   }}>
     <Messages />
   </Box>
-  <Box id="msgsBox" className='msgsContainer' sx={{
+  <Box id="smsgsBox" onScroll={function(){
+    console.log('Scroll');
+    document.getElementById('msgsBox').scrollTop = document.getElementById('smsgsBox').scrollTop
+  }} className='msgsContainer' sx={{
     position: 'absolute',
     bgcolor: 'transparent',
     width: '100vw',
@@ -109,13 +111,14 @@ function App() {
     flexDirection: 'column',
     overflow: 'scroll',
     overflowX: 'hidden',
-    scrollBehavior: 'smooth',
     alignItems: 'flex-end',
   }}>
     <SelfMessages />
   </Box>
   </Box>
 }
+
+
 
 function checkNotif() {
 

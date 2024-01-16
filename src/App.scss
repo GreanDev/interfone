@@ -6,7 +6,7 @@
 
 }
 
-#msgsBox::webkit-scrollbar{
+.msgsContainer::webkit-scrollbar{
     width: 0px; /* Chrome Opera Safari */
 }
 
@@ -14,12 +14,12 @@
     display: none;
 }
 
-#msgsBox::-webkit-scrollbar-track{
+.msgsContainer::-webkit-scrollbar-track{
     width: 0px; /* Chrome Opera Safari */
 }
 
 
-#msgsBox{
+.msgsContainer{
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
