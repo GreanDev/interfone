@@ -54,9 +54,9 @@ try {
 
 onMessage(messaging, (payload) => {
   console.log('Message received. ', payload);
-  const notification = new Notification(payload.data.title, {
-    body: payload.data.body
-  });
+  // const notification = new Notification(payload.data.title, {
+  //   body: payload.data.body
+  // });
   
   console.log("Adding to texts");
   var msgText = <Typography variant="h6" sx={{bgcolor: 'primary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0',marginTop:'5px', color: 'black' }}>
