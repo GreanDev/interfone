@@ -10,6 +10,7 @@ import cfg from './cfg.json'
 var users = [];
 const messages = [
 ];
+const selfMessages = [];
 let regDoc = "";
 let currentKey = "";
 //FCM
@@ -58,11 +59,19 @@ onMessage(messaging, (payload) => {
   });
   
   console.log("Adding to texts");
-  var msgText = <Typography variant="h6" sx={{bgcolor: 'primary.main', margin: '5px', borderRadius: '5px', paddingLeft:'8px', color: 'black' }}>
+  var msgText = <Typography variant="h6" sx={{bgcolor: 'primary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0', color: 'black' }}>
   {payload.data.body}
 </Typography>
-  messages.push(msgText);    // ...
+  var otherPad = <Typography variant="h6" sx={{opacity: '0', bgcolor: 'primary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0', color: 'black' }}>
+  {payload.data.body}
+</Typography>
+  messages.push(msgText); 
+  selfMessages.push(otherPad);
+  var scroll=document.getElementById("msgsBox");
+  scroll.scrollTop = scroll.scrollHeight;   // ...
   
+  var scroll=document.getElementById("msgsBox");
+  scroll.scrollTop = scroll.scrollHeight;
 });
 
 function Messages(){
@@ -76,6 +85,20 @@ function Messages(){
   }, []);
     return(
     messages
+  );
+}
+
+function SelfMessages(){
+  const [time, setTime] = useState(Date.now());
+
+  useEffect(() => {
+    const interval = setInterval(() => setTime(Date.now()), 1000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+    return(
+    selfMessages
   );
 }
 async function getUsers(){
@@ -119,18 +142,24 @@ async function sendMessage(message){
 
   })
   console.log("Adding to texts");
-  var msgText = <Typography variant="h6" sx={{bgcolor: 'secondary.main', margin: '5px', borderRadius: '5px', paddingLeft:'8px', color: 'black' }}>
+  var msgText = <Typography variant="h6" sx={{bgcolor: 'secondary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0', color: 'black' }}>
   {message}
 </Typography>
-  messages.push(msgText); 
+  var otherPad = <Typography variant="h6" sx={{opacity: '0', bgcolor: 'secondary.main', margin: '5px', borderRadius: '5px',padding: '0'  , paddingLeft:'5px', paddingRight: '5px', margin: '0', color: 'black' }}>
+  {message}
+</Typography>
+  selfMessages.push(msgText); 
+  messages.push(otherPad);
   var scroll=document.getElementById("msgsBox");
   scroll.scrollTop = scroll.scrollHeight;
 
 }
+
+
 
 async function logoff(){
     console.log("Logging off..."+regDoc);
     await deleteDoc(doc(db, "users", regDoc));
 }
 
-export { logoff , sendMessage, Messages };
+export { logoff , sendMessage, Messages, SelfMessages };

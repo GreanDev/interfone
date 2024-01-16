@@ -6,7 +6,7 @@ import { getMessaging, getToken, onMessage } from "firebase/messaging";
 import { UseState, useEffect }  from 'react';
 import { Box, Container, ThemeProvider, Typography, createTheme, Button, IconButton, TextField, SvgIcon, Alert, Drawer } from '@mui/material';
 import './firebaseController';
-import { logoff, sendMessage, Messages } from './firebaseController';
+import { logoff, sendMessage, Messages, SelfMessages } from './firebaseController';
 
 function open(){
 
@@ -86,6 +86,7 @@ function App() {
   }
   >Notifications Not Allowed</Alert>}
   <Box id="msgsBox" className='msgsContainer' sx={{
+    position: 'absolute',
     bgcolor: 'transparent',
     width: '100vw',
     height: '88vh',
@@ -94,8 +95,24 @@ function App() {
     overflow: 'scroll',
     overflowX: 'hidden',
     scrollBehavior: 'smooth',
+    alignItems: 'flex-start',
+
   }}>
     <Messages />
+  </Box>
+  <Box id="msgsBox" className='msgsContainer' sx={{
+    position: 'absolute',
+    bgcolor: 'transparent',
+    width: '100vw',
+    height: '88vh',
+    display: 'flex',
+    flexDirection: 'column',
+    overflow: 'scroll',
+    overflowX: 'hidden',
+    scrollBehavior: 'smooth',
+    alignItems: 'flex-end',
+  }}>
+    <SelfMessages />
   </Box>
   </Box>
 }
