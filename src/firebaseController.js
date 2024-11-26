@@ -21,17 +21,19 @@ let currentKey = "";
 //FCM
 //https://firebase.google.com/docs/web/setup#config-object
 const cfg = {
-  apiKey: "AIzaSyD0En-gHoNBS0-slWk9dJaht3qS0ZLfbpw",
+  apiKey: "AIzaSyBtX6I_Psw-Fi3FMxuYkyBCo5Ew_sfiTOw",
 
-  authDomain: "interfone-gba.firebaseapp.com",
+  authDomain: "interfone-1fcbb.firebaseapp.com",
 
-  projectId: "interfone-gba",
+  projectId: "interfone-1fcbb",
 
-  storageBucket: "interfone-gba.appspot.com",
+  storageBucket: "interfone-1fcbb.firebasestorage.app",
 
-  messagingSenderId: "738904683689",
+  messagingSenderId: "56758033116",
 
-  appId: "1:738904683689:web:e1c93c75ba42a23e4ea5b8",
+  appId: "1:56758033116:web:fc00136483829ce89df219",
+
+  measurementId: "G-24MZG0GRPV",
 };
 const firebaseApp = initializeApp(cfg);
 
@@ -148,42 +150,18 @@ function SelfMessages() {
   }, []);
   return selfMessages;
 }
-async function getUsers() {
-  users = [];
-  const querySnapshot = await getDocs(collection(db, "users"));
-  querySnapshot.forEach((doc) => {
-    // doc.data() is never undefined for query doc snapshots
-    console.log(doc.id, " => ", doc.id);
-    if (doc.id != regDoc) {
-      users.push(doc.id);
-      console.log("Added: " + doc.id + " To users list");
-    }
-  });
-}
 
 async function sendMessage(message) {
   if (message === "") {
     return;
   }
-  await getUsers();
-  users.forEach((usr) => {
-    if (usr == currentKey) {
-      return;
-    }
-    console.log("Sending to: " + usr);
-    const config = {
-      headers: { Authorization: `key=${cfg.ServerKey}` },
-    };
-    const body = {
-      to: usr,
-      data: {
-        body: message,
-        title: "InterFone Message",
-      },
-    };
-
-    Axios.post("https://fcm.googleapis.com/fcm/send", body, config);
+  const msgdb = getFirestore(firebaseApp);
+  console.log(typeof msgdb);
+  await addDoc(collection(msgdb, "messages"), {
+    content: message,
+    user: "main",
   });
+
   console.log("Adding to texts");
   var msgText = (
     <Typography
