@@ -10,7 +10,7 @@ const {
   onDocumentWritten,
   onDocumentCreated,
 } = require("firebase-functions/v2/firestore");
-const { onRequest } = require("firebase-functions/v2/https");
+const { onRequest, onCall } = require("firebase-functions/v2/https");
 const logger = require("firebase-functions/logger");
 
 // Create and deploy your first functions
@@ -25,4 +25,10 @@ exports.added = onDocumentCreated("chat1/{msg}", (event) => {
   const data = snapshot.data();
 
   console.log(data.content);
+});
+
+exports.subscribeMe = onCall({ cors: true }, (req, res) => {
+  return {
+    test: "good!",
+  };
 });

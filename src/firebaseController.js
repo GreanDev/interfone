@@ -10,6 +10,11 @@ import {
   getDocs,
   setDoc,
 } from "firebase/firestore";
+import {
+  connectFunctionsEmulator,
+  getFunctions,
+  httpsCallable,
+} from "firebase/functions";
 import { Box, Typography } from "@mui/material";
 import { useEffect, useReducer, useState } from "react";
 
@@ -36,10 +41,16 @@ const cfg = {
   measurementId: "G-24MZG0GRPV",
 };
 const firebaseApp = initializeApp(cfg);
-
+const functions = getFunctions(firebaseApp, "us-central1");
 // Retrieve an instance of Firebase Messaging so that it can handle background
 // messages.
 const messaging = getMessaging(firebaseApp);
+//Don't uncomment this dipshit
+//connectFunctionsEmulator(functions, "localhost", 5001);
+const subscribeMe = httpsCallable(functions, "subscribeMe");
+subscribeMe().then((result) => {
+  console.log(result);
+});
 
 getToken(messaging, { vapidKey: cfg.PublicKey })
   .then((currentToken) => {

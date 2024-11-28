@@ -1,38 +1,38 @@
- // Scripts for firebase and firebase messaging
- importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js");
- importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js");
+// Scripts for firebase and firebase messaging
+importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/8.2.0/firebase-messaging.js");
 
- // Initialize the Firebase app in the service worker by passing the generated config
- const firebaseConfig = {
+// Initialize the Firebase app in the service worker by passing the generated config
+const firebaseConfig = {
+  apiKey: "AIzaSyBtX6I_Psw-Fi3FMxuYkyBCo5Ew_sfiTOw",
 
-  apiKey: "AIzaSyD0En-gHoNBS0-slWk9dJaht3qS0ZLfbpw",
+  authDomain: "interfone-1fcbb.firebaseapp.com",
 
-  authDomain: "interfone-gba.firebaseapp.com",
+  projectId: "interfone-1fcbb",
 
-  projectId: "interfone-gba",
+  storageBucket: "interfone-1fcbb.firebasestorage.app",
 
-  storageBucket: "interfone-gba.appspot.com",
+  messagingSenderId: "56758033116",
 
-  messagingSenderId: "738904683689",
+  appId: "1:56758033116:web:fc00136483829ce89df219",
 
-  appId: "1:738904683689:web:e1c93c75ba42a23e4ea5b8"
-
+  measurementId: "G-24MZG0GRPV",
 };
 
-console.log('Starting background worker');
+console.log("Starting background worker");
 
- firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
- // Retrieve firebase messaging
- const messaging = firebase.messaging();
+// Retrieve firebase messaging
+const messaging = firebase.messaging();
 
- messaging.onBackgroundMessage(function(payload) {
-   console.log("Received background message ", payload);
+messaging.onBackgroundMessage(function (payload) {
+  console.log("Received background message ", payload);
 
-   const notificationTitle = payload.data.title;
-   const notificationOptions = {
-     body: payload.data.body,
-   };
+  const notificationTitle = payload.data.title;
+  const notificationOptions = {
+    body: payload.data.body,
+  };
 
-   self.registration.showNotification(notificationTitle, notificationOptions);
- });
+  self.registration.showNotification(notificationTitle, notificationOptions);
+});
